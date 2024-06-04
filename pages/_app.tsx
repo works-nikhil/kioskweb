@@ -9,7 +9,7 @@ import "@/styles/globals.css";
 
 const MyCartContext = createContext({});
 
-const MyProvider = ({ children }) => {
+const MyProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, setCart] = React.useState([]);
 
   return (

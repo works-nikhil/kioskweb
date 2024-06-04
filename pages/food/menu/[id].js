@@ -15,7 +15,7 @@ export default function Menu() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { cart, setCart } = useContext(MyCartContext);
 
-  let nameOfRestaurant;
+  // let nameOfRestaurant;
   let natureOfFood = [];
   let categoryOfFood = [];
   let foodItems = [];
