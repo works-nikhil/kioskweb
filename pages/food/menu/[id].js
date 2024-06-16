@@ -39,7 +39,7 @@ export default function Menu() {
   }, [id]);
 
   fetchedData?.map((item) => {
-    nameOfRestaurant = item?.location_name;
+    // nameOfRestaurant = item?.location_name;
     item?.natures?.map((nature) => {
       natureOfFood.push(nature?.nature);
       nature?.categories?.map((category) => {
