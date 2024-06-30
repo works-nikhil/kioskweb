@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Card, CardBody, Button, CardFooter, Divider } from "@nextui-org/react";
 import { useRouter } from "next/router";
 
 import { fetchOrderStatus, updateOrderStatus } from "../../api/food/services";
+import { MyCartContext } from "../../pages/_app";
 
 export default function Kitchen() {
   const router = useRouter();
@@ -13,6 +15,7 @@ export default function Kitchen() {
   const [preparingOrders, setPreparingOrders] = useState([]);
   const [readyOrders, setReadyOrders] = useState([]);
   const [rerender, setRerender] = useState(false);
+  const { isReRenderRequired, setIsReRenderRequired } = useContext(MyCartContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +24,7 @@ export default function Kitchen() {
 
         if (jsonData?.status === "success") {
           setFetchedData(jsonData?.data);
+          setIsReRenderRequired(false);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -31,9 +35,7 @@ export default function Kitchen() {
       fetchData();
       setRerender(false);
     }
-  }, [id, rerender]);
-
-  console.log(fetchedData, "fetchedData nikhil");
+  }, [id, rerender, isReRenderRequired]);
 
   useEffect(() => {
     if (fetchedData) {
